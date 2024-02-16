@@ -1,17 +1,40 @@
-import { useCallback } from "react";
-import EmailInput from "../components/EmailInput";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC7RM0ajoGtd51PEH6QqItl-CQ__kXWwjk",
+  authDomain: "autiembrace-auth.firebaseapp.com",
+  projectId: "autiembrace-auth",
+  storageBucket: "autiembrace-auth.appspot.com",
+  messagingSenderId: "1007870745477",
+  appId: "1:1007870745477:web:f1c86e5691066b24e302ec",
+  measurementId: "G-5XG7B7LYED"
+};
+
+const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const onFrameButtonClick = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
-
-  const onSignInLabelClick = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
+  const handleLogin = async (e) => {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
 
   const onFrameContainerClick = useCallback(() => {
     navigate("/sign-up");
@@ -40,25 +63,31 @@ const LoginPage = () => {
               className="w-full [outline:none] bg-white self-stretch h-[50px] rounded-3xs box-border flex flex-row items-center justify-start pt-[17px] px-[23px] pb-4 font-montserrat text-sm text-silver min-w-[250px] z-[1] border-[1px] border-solid border-silver"
               placeholder="username@gmail.com"
               type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <EmailInput passwordPlaceholder="Password" passwordName="Password" />
+          <input
+            passwordPlaceholder="Password"
+            passwordName="Password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button className="cursor-pointer [border:none] p-0 bg-[transparent] relative text-[12px] font-montserrat text-white text-left inline-block z-[1]">
             Forgot Password?
           </button>
         </div>
         <button
           className="cursor-pointer [border:none] pt-0 px-0 pb-[13px] bg-[transparent] w-[500px] h-[63px] flex flex-row items-center justify-start box-border max-w-full sticky top-[0] z-[99]"
-          onClick={onFrameButtonClick}
+          onClick={handleLogin}
         >
-          <div
-            className="self-stretch w-[500px] relative rounded-3xs bg-palevioletred max-w-full cursor-pointer z-[1]"
-            onClick={onSignInLabelClick}
-          />
+          <div className="self-stretch w-[500px] relative rounded-3xs bg-palevioletred max-w-full cursor-pointer z-[1]" />
           <div className="relative text-xl font-montserrat text-white text-left whitespace-nowrap z-[2] ml-[-282px]">
             Sign in
           </div>
         </button>
+
         <div
           className="flex flex-row items-start justify-start py-0 pr-0 pl-3.5 cursor-pointer text-sm"
           onClick={onFrameContainerClick}

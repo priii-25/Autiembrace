@@ -61,8 +61,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<AutiEmbrace />} />
-      <Route path="/-login-page" element={<LoginPage />} />
-      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="/landingpage" element={<LandingPage />} />
     </Routes>
   );

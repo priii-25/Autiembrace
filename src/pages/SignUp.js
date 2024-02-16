@@ -1,13 +1,42 @@
-import { useCallback } from "react";
-import EmailInput from "../components/EmailInput";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC7RM0ajoGtd51PEH6QqItl-CQ__kXWwjk",
+  authDomain: "autiembrace-auth.firebaseapp.com",
+  projectId: "autiembrace-auth",
+  storageBucket: "autiembrace-auth.appspot.com",
+  messagingSenderId: "1007870745477",
+  appId: "1:1007870745477:web:f1c86e5691066b24e302ec",
+  measurementId: "G-5XG7B7LYED"
+};
+
+const app = initializeApp(firebaseConfig);
+// const auth = getAuth(app);
 
 const SignUp = () => {
   const navigate = useNavigate();
 
-  const onRectangleShapeClick = useCallback(() => {
-    navigate("/-login-page");
-  }, [navigate]);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up
+        const user = userCredential.user;
+        navigate("/login");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        alert(errorMessage);
+      });
+  };
 
   return (
     <div className="w-full h-[1024px] relative [background:linear-gradient(-72.44deg,_rgba(111,_157,_172,_0.44)_2.62%,_#6f9dac_50%,_#6f9dac_50.03%,_#6f9dac)] overflow-hidden flex flex-row items-start justify-center pt-[167px] px-5 pb-[259px] box-border tracking-[normal] text-left text-lg text-white font-montserrat">
@@ -29,14 +58,17 @@ const SignUp = () => {
             className="w-full [outline:none] bg-white self-stretch h-[50px] rounded-3xs box-border flex flex-row items-center justify-start pt-[17px] px-[23px] pb-4 font-montserrat text-sm text-silver min-w-[250px] z-[1] border-[1px] border-solid border-silver"
             placeholder="username@gmail.com"
             type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-        <EmailInput
-          passwordPlaceholder="Password"
-          passwordName="Password"
-          propAlignSelf="unset"
-          propWidth="500px"
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
+
         <div className="w-[500px] flex flex-col items-start justify-start pt-0 px-0 pb-4 box-border gap-[7px] max-w-full">
           <div className="relative z-[1]">Verify Password</div>
           <div className="self-stretch rounded-3xs bg-white box-border flex flex-row items-end justify-between pt-3.5 pb-[19px] pr-[17px] pl-[25px] gap-[20px] max-w-full z-[1] border-[1px] border-solid border-silver">
@@ -46,6 +78,8 @@ const SignUp = () => {
               name="Password"
               placeholder="Password"
               type="text"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <img
               className="h-4 w-4 relative rounded-21xl overflow-hidden shrink-0 z-[2]"
@@ -55,11 +89,11 @@ const SignUp = () => {
             />
           </div>
         </div>
-        <button className="cursor-pointer [border:none] p-0 bg-[transparent] w-[500px] h-[50px] flex flex-row items-center justify-start max-w-full">
-          <div
-            className="self-stretch w-[500px] relative rounded-3xs bg-palevioletred max-w-full cursor-pointer z-[1]"
-            onClick={onRectangleShapeClick}
-          />
+        <button
+          className="cursor-pointer [border:none] p-0 bg-[transparent] w-[500px] h-[50px] flex flex-row items-center justify-start max-w-full"
+          onClick={handleSubmit}
+        >
+          <div className="self-stretch w-[500px] relative rounded-3xs bg-palevioletred max-w-full cursor-pointer z-[1]" />
           <div className="relative text-xl font-montserrat text-white text-left z-[2] ml-[-332px] mq450:text-base">
             Create Account
           </div>
