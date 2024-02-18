@@ -10,6 +10,8 @@ import SignUp from "./pages/SignUp";
 import LoginPage from "./pages/LoginPage";
 import AutiEmbrace from "./pages/AutiEmbrace";
 import PlayGames from "./pages/PlayGames";
+import SensoryRoom from "./pages/SensoryRoom";
+import AutiEmbrace1 from "./pages/AutiEmbrace1";
 
 function App() {
   const action = useNavigationType();
@@ -47,6 +49,14 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      case "/sensoryroom":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/autiembrace1":
+        title = "";
+        metaDescription = "";
+        break;
     }
 
     if (title) {
@@ -70,6 +80,8 @@ function App() {
       <Route path="/-login-page" element={<LoginPage />} />
       <Route path="/autiembrace" element={<AutiEmbrace />} />
       <Route path="/playgames" element={<PlayGames />} />
+      <Route path="/sensoryroom" element={<SensoryRoom />} />
+      <Route path="/autiembrace1" element={<AutiEmbrace1 />} />
     </Routes>
   );
 }

@@ -78,9 +78,9 @@ const LandingPage = () => {
       </main>
       <footer className="self-stretch bg-gainsboro flex flex-row items-center justify-center py-0 pr-5 pl-[21px] box-border max-w-full text-center text-3xl text-black font-montserrat">
         <div className="self-stretch w-[1439px] relative bg-gainsboro hidden max-w-full" />
-        <div className="h-[50px] w-56 relative whitespace-pre-wrap flex items-center shrink-0 z-[1]">
+        <div className="h-[50px] w-56 relative flex items-center shrink-0 z-[1]">
           <span className="w-full">
-            <span>{`©  `}</span>
+            <span className="whitespace-pre-wrap">{`©  `}</span>
             <span className="text-lg">AutiEmbrace</span>
           </span>
         </div>

@@ -186,9 +186,9 @@ const AutiEmbrace = () => {
         </div>
         <textarea className="[border:none] bg-white [outline:none] absolute w-[calc(100%_-_973px)] right-[123px] bottom-[133px] left-[850px] rounded-31xl h-48" />
         <div className="absolute w-full right-[0px] bottom-[0px] left-[0px] bg-gainsboro h-[50px]" />
-        <div className="absolute top-[calc(50%_+_165.5px)] left-[calc(50%_-_111.5px)] whitespace-pre-wrap text-center flex items-center w-56 h-[50px]">
+        <div className="absolute top-[calc(50%_+_165.5px)] left-[calc(50%_-_111.5px)] text-center flex items-center w-56 h-[50px]">
           <span className="w-full">
-            <span>{`©  `}</span>
+            <span className="whitespace-pre-wrap">{`©  `}</span>
             <span className="text-lg">AutiEmbrace</span>
           </span>
         </div>

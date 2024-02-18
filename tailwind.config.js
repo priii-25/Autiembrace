@@ -22,6 +22,7 @@ module.exports = {
           "200": "rgba(184, 213, 195, 0.5)",
         },
         mediumaquamarine: "#85dcb2",
+        mediumpurple: "#9369d8",
       },
       spacing: {},
       fontFamily: {
@@ -35,6 +36,8 @@ module.exports = {
         "21xl": "40px",
         "31xl": "50px",
         "54xl": "73px",
+        "81xl": "100px",
+        "12xs": "1px",
       },
     },
     fontSize: {

@@ -46,9 +46,9 @@ const PlayGames = () => {
       </header>
       <footer className="absolute w-[calc(100%_-_1px)] right-[1px] bottom-[0px] left-[0px] h-[59px] text-center text-3xl text-black font-montserrat">
         <div className="absolute w-full right-[0px] bottom-[0px] left-[0px] bg-gainsboro h-[59px]" />
-        <div className="absolute w-[calc(100%_-_1215px)] bottom-[0px] left-[608px] whitespace-pre-wrap flex items-center h-[59px]">
+        <div className="absolute w-[calc(100%_-_1215px)] bottom-[0px] left-[608px] flex items-center h-[59px]">
           <span className="w-full">
-            <span>{`©  `}</span>
+            <span className="whitespace-pre-wrap">{`©  `}</span>
             <span className="text-lg">AutiEmbrace</span>
           </span>
         </div>
